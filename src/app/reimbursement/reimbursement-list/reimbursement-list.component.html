@@ -1,0 +1,55 @@
+<div class="container">
+    <h3>List Of Reimbursements</h3>
+    
+            <div class="row">
+                <div class="col-3"><button type="button" class="btn btn-info" (click)="loadAllReimbursements()"> View All Reimbursements </button></div>
+                <div class="col-3"><button type="button" class="btn btn-warning" (click)="getAllPendingReimbursements()"> View All Pending Reimbursements </button></div> 
+                <div class="col-3"><button type="button" class="btn btn-success" (click)="getAllApprovedReimbursements()"> View Approved Reimbursements </button></div> 
+                <div class="col-3"><button type="button" class="btn btn-danger" (click)="getAllDeniedReimbursements()"> View Denied Reimbursements </button></div> 
+            </div>
+   
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th *ngIf="getRole()=='FINANCE_MANAGER'">Author</th>
+                <th *ngIf="getRole()=='EMPLOYEE'">Resolver</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Type</th>
+                <th>Creation Date</th>
+                <th>Resolved Date</th>
+                <th>Status</th>
+                <th *ngIf="getRole()=='FINANCE_MANAGER'">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let reimbursement of allReimbursements">
+                <td>{{ reimbursement.reimbId }}</td>
+                <td *ngIf="getRole()=='FINANCE_MANAGER'">{{ reimbursement.author }}</td>
+                <td *ngIf="getRole()=='EMPLOYEE'">{{ reimbursement.resolver }}</td>
+                <td>{{ reimbursement.description }}</td>
+                <td>{{ reimbursement.amount }}</td>
+                <td>{{ reimbursement.type }}</td>
+                <td>{{ reimbursement.dateSubmitted | date: 'h:mm:ss MM-dd-yyyy ' }}</td>
+                <td>{{ reimbursement.dateResolved | date: 'h:mm:ss MM-dd-yyyy'}}</td>
+                <td>{{ reimbursement.status }}</td>
+                <td *ngIf="getRole()=='FINANCE_MANAGER'">
+                    <button 
+                        type="button" 
+                        class="btn btn-success" 
+                        (click)="approveReimbursement(reimbursement)"
+                        ><i class="material-icons"></i>Approve</button>
+               
+                    <button 
+                        type="button" 
+                        class="btn btn-danger" 
+                        (click)="denyReimbursement(reimbursement)">
+                        <i class="material-icons"></i>
+                        Denny
+                </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

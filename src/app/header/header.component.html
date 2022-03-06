@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <div class="container-fluid">
+    <ul class="navbar-nav">
+      <li class="nav-item" >
+        <a class="nav-link" *ngIf="isLoggedIn() == false" routerLink="login">Login</a>
+      </li>
+      <li class="nav-item" *ngIf="isLoggedIn()==true">
+        <a class="nav-link" (click)="logout()">Logout</a>
+      </li>
+      <li class="nav-item" *ngIf="isLoggedIn()==true" routerLink="reimbursementList">
+        <a class="nav-link" >View Reimbursements</a>
+      </li>
+      <li class="nav-item" *ngIf="isLoggedIn()==true && getRole()=='FINANCE_MANAGER'" routerLink="employeesList">
+        <a class="nav-link" >View Employees</a>
+      </li>
+      <li class="nav-item" *ngIf="isLoggedIn()==true && getRole()=='EMPLOYEE'" routerLink="add-reimbursement">
+        <a class="nav-link" >Add Reimbursement</a>
+      </li>     
+      <li class="nav-item" *ngIf="isLoggedIn()==true" routerLink="manage-profile">
+        <a class="nav-link" >Manage Profile</a>
+      </li>     
+    </ul>
+  </div>
+</nav>

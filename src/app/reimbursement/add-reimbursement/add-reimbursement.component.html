@@ -1,0 +1,43 @@
+<div class="container">
+    <h3>Add new Reimbursement</h3>
+  <div>
+    <div class="card m-5" >
+        <div class="card-header bg-success text-white">Add a Reimbursement</div>
+        <div class="p-3 mb-2 bg-danger text-white" *ngIf="error">{{errorMessage}}</div>
+        <div class="card-body">
+            <form>
+                <div class="mb-3 mt-3">
+                  <label for="title" class="form-label">Type:</label>
+                  <select name="type" [(ngModel)]="newReimbursement.type"> 
+                    <option *ngFor="let type of reimbursementTypes" [value]="type">{{type}}</option> 
+                </select> 
+                </div>
+                <div class="mb-3 mt-3">
+                    <label for="author" class="form-label">Description: </label>
+                    <input 
+                      type="text" 
+                      class="form-control" 
+                      id="description" 
+                      placeholder="Enter description" 
+                      name="description"
+                      [(ngModel)]="newReimbursement.description">
+                  </div>
+                  <div class="mb-3 mt-3 form-select">
+                    <label for="genre" class="form-label">Amount:</label>
+                    <input 
+                      type="number" 
+                      class="form-control" 
+                      id="genre" 
+                      placeholder="Enter amount" 
+                      name="bookGenre"
+                      [(ngModel)]="newReimbursement.amount">
+                  </div>
+              </form>
+        </div>
+        <div class="card-footer bg-success">
+            <button type="button" class="btn btn-light" (click)="addReimbursement()">
+                ADD
+            </button>
+        </div>
+    </div>
+</div>
